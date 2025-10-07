@@ -1,8 +1,8 @@
-days_in_month = int(input("Please enter the number of days in the month:"))
-starting_day = str(input("Please enter the day of the week the month starts on:" ))
+#days_in_month = int(input("Please enter the number of days in the month:"))
+#starting_day = str(input("Please enter the day of the week the month starts on:" ))
 
-#days_in_month = int(30)
-#starting_day = str("Friday")
+days_in_month = int(30)
+starting_day = str("Sunday")
 row_counter = int(0)
 first_row = True
 
@@ -13,11 +13,12 @@ days_dict = {
   "Thursday": 4,
   "Friday": 5,
   "Saturday": 6,
-  "Sunday": 7
+  "Sunday": 0
 }
 
 gaps_to_leave = int(days_dict[starting_day])
 row_counter += gaps_to_leave
+
 
 for i in range (days_in_month):
     row_counter += 1
