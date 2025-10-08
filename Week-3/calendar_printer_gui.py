@@ -2,25 +2,22 @@ import tkinter as tk
 from tkinter import messagebox
 
 days_dict = {
-    "monday": 1,
-    "tuesday": 2,
-    "wednesday": 3,
-    "thursday": 4,
-    "friday": 5,
-    "saturday": 6,
-    "sunday": 0
+    "Monday": 1,
+    "Tuesday": 2,
+    "Wednesday": 3,
+    "Thursday": 4,
+    "Friday": 5,
+    "Saturday": 6,
+    "Sunday": 0
 }
 
 def generate_calendar():
     try:
         days_in_month = int(days_entry.get())
-        starting_day = day_entry.get().lower()
+        starting_day = day_var.get().lower()
         gaps_to_leave = days_dict[starting_day]
     except ValueError:
-        messagebox.showerror("Invalid Input, please enter a valid number of days.")
-        return
-    except KeyError:
-        messagebox.showerror("Invalid Day, please enter a valid day of the week.")
+        messagebox.showerror("Invalid input, please enter a valid number of days.")
         return
 
     for widget in calendar_frame.winfo_children():
@@ -48,8 +45,10 @@ days_entry = tk.Entry(root)
 days_entry.pack()
 
 tk.Label(root, text="Starting day of the week:").pack()
-day_entry = tk.Entry(root)
-day_entry.pack()
+day_var = tk.StringVar(root)
+day_var.set("Monday")  # default value
+day_dropdown = tk.OptionMenu(root, day_var, *days_dict.keys())
+day_dropdown.pack()
 
 tk.Button(root, text="Generate Calendar", command=generate_calendar).pack(pady=10)
 
