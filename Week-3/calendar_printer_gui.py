@@ -51,6 +51,13 @@ def setup_calendar_gui():
     day_dropdown = tk.OptionMenu(root, day_var, *days_dict.keys())
     day_dropdown.pack()
 
+    # Button that runs function to create calendar
+    tk.Button(
+        root,
+        text="Generate Calendar",
+        command=lambda: generate_calendar(days_entry, day_var, calendar_inner_frame)
+    ).pack(pady=10)
+
     # Scrollable calendar frame setup
     canvas = tk.Canvas(root, height=300, width=515)
     scrollbar = tk.Scrollbar(root, orient="vertical", command=canvas.yview)
@@ -63,21 +70,19 @@ def setup_calendar_gui():
         )
     )
 
+
     canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
     canvas.configure(yscrollcommand=scrollbar.set)
 
     canvas.pack(side="left", fill="both", expand=True)
     scrollbar.pack(side="right", fill="y")
 
+
+
     calendar_inner_frame = tk.Frame(scrollable_frame)
     calendar_inner_frame.pack()
 
-    # Button that runs function to create calendar
-    tk.Button(
-        root,
-        text="Generate Calendar",
-        command=lambda: generate_calendar(days_entry, day_var, calendar_inner_frame)
-    ).pack(pady=10)
+
 
     root.mainloop()
 
