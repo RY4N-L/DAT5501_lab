@@ -1,52 +1,20 @@
 import numpy as np
-import tkinter as tk
-from tkinter import messagebox
-from tkcalendar import DateEntry
-from datetime import date
 
-def calculate_duration():
-    start_date = np.datetime64(start_calendar.get_date(), 'D')
-    use_today = use_today_var.get()
+def calculate_duration(start_date_str, end_date_str):
+    """
+    Calculate the duration in days between two dates.
 
-    if use_today:
-        end_date = np.datetime64('today', 'D')
-    else:
-        end_date = np.datetime64(end_calendar.get_date(), 'D')
+    Parameters:
+    start_date_str (str): The start date in 'YYYY-MM-DD' format.
+    end_date_str (str): The end date in 'YYYY-MM-DD' format.
 
+    Returns:
+    int: The duration in days between the two dates.
+    """
+    start_date = np.datetime64(start_date_str, 'D')
+    end_date = np.datetime64(end_date_str, 'D')
     duration = (end_date - start_date).astype(int)
-    result_label.config(text=f"Duration: {duration} days")
+    return duration
 
-def toggle_end_date():
-    if use_today_var.get():
-        # Set end date to today and disable calendar
-        end_calendar.set_date(date.today())
-        end_calendar.config(state='disabled')
-    else:
-        # Enable calendar for manual selection
-        end_calendar.config(state='normal')
-
-# GUI setup
-root = tk.Tk()
-root.title("Date Duration Calculator")
-
-tk.Label(root, text="Start Date:").grid(row=0, column=0, padx=10, pady=5)
-start_calendar = DateEntry(root, date_pattern='yyyy-mm-dd')
-start_calendar.grid(row=0, column=1, padx=10, pady=5)
-
-use_today_var = tk.BooleanVar(value=True)
-tk.Checkbutton(root, text="Use today's date as end date", variable=use_today_var, command=toggle_end_date).grid(row=1, columnspan=2, padx=10, pady=5)
-
-tk.Label(root, text="End Date:").grid(row=2, column=0, padx=10, pady=5)
-end_calendar = DateEntry(root, date_pattern='yyyy-mm-dd')
-end_calendar.grid(row=2, column=1, padx=10, pady=5)
-
-# Initially set to today and disabled
-end_calendar.set_date(date.today())
-end_calendar.config(state='disabled')
-
-tk.Button(root, text="Calculate Duration", command=calculate_duration).grid(row=3, columnspan=2, pady=10)
-
-result_label = tk.Label(root, text="Duration: ")
-result_label.grid(row=4, columnspan=2, pady=5)
-
-root.mainloop()
+# Example usage
+print(calculate_duration('2023-01-01', '2023-01-31'))  # Returns 30
