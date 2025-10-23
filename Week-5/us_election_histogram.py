@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 # Load the CSV with semicolon delimiter
 election_data_df = pd.read_csv('DAT5501_lab/Week-5/US-2016-primary.csv', delimiter=';')
 election_data_df.fillna(0, inplace=True)  # Fill NaN values with 0
-candidate = 'John Kasich'
+candidate = 'Hillary Clinton'
 
 # Filter for one candidate, e.g. John Kasich
 candidate_df = election_data_df[election_data_df['candidate'] == candidate]
@@ -26,6 +26,7 @@ state_fractions = state_total_candidate_votes / state_total_votes
 
 # Find the fraction of votes of each state compared to total votes for the candidate
 candidate_vote_fractions = state_total_candidate_votes / total_candidate_votes
+
 #sum candidate_vote_fractions should be 1
 #print(candidate_vote_fractions)
 #print(f"Total of vote fractions = {candidate_vote_fractions.sum()}")
