@@ -14,7 +14,7 @@ total_candidate_votes = candidate_df['votes'].sum()
 
 # Find the total number of vote fraction in each state
 state_vote_fractions = election_data_df.groupby('state')['fraction_votes'].sum() 
-print(state_vote_fractions)
+#print(state_vote_fractions)
 
 # Find the total number of votes in each state
 state_total_votes = election_data_df.groupby('state')['votes'].sum()
