@@ -1,20 +1,33 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from fuzzywuzzy import process
+
 # Load the CSV with semicolon delimiter
 election_data_df = pd.read_csv('DAT5501_lab/Week-5/US-2016-primary.csv', delimiter=';')
 election_data_df.fillna(0, inplace=True)  # Fill NaN values with 0
 
+# List of known candidate names
+candidates = election_data_df['candidate'].unique()
+
 while True:
     
     candidate = input("Please enter the candidate's name (e.g. John Kasich):")
-    # Filter for one candidate, e.g. John Kasich
-    candidate_df = election_data_df[election_data_df['candidate'] == candidate]
-    
-    if candidate_df.empty: # If no data found for candidate, prompt again
-        print("Candidate not found. Please try again.")
+
+    # Use fuzzy matching to find the closest candidate name
+    matched_candidate, score = process.extractOne(candidate, candidates)
+
+    if score >= 80:  # If the match score is high enough, use the matched name
+        print(f"Interpreted candidate name as: {matched_candidate}")
+        candidate = matched_candidate
+
+        # Filter for one candidate, e.g. John Kasich
+        candidate_df = election_data_df[election_data_df['candidate'] == candidate]
+        break
     
     else:
-        break
+        # If no data found for candidate, prompt again
+        print("Candidate not found. Please try again.")
+
 
 
 # Find the total number of votes for the candidate
