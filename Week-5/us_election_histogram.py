@@ -10,7 +10,8 @@ election_data_df.fillna(0, inplace=True)  # Fill NaN values with 0
 candidates = election_data_df['candidate'].unique()
 
 while True:
-    
+    # Prompt user for candidate name and loop until valid input is given
+
     candidate = input("Please enter the candidate's name (e.g. John Kasich):")
 
     # Use fuzzy matching to find the closest candidate name
