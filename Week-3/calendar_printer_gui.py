@@ -50,13 +50,30 @@ def generate_calendar(days_entry, day_var, calendar_inner_frame):
     row = 1
     col = gaps_to_leave
     for day in range(1, days_in_month + 1):
-        tk.Label(calendar_inner_frame, text=str(day), width=10, borderwidth=1, relief="solid").grid(row=row, column=col)
+        colour = "white"
+        
+        match col:
+            case 0: # Sunday
+                colour = "lightgrey"
+            case 6: # Saturday
+                colour = "lightgrey"
+
+        tk.Label(calendar_inner_frame, text=str(day), width=10, borderwidth=1, relief="solid", bg=colour).grid(row=row, column=col)
+
         col += 1
         if col > 6: # Move to the next row after Saturday
             col = 0
             row += 1
 
 def setup_calendar_gui():
+
+    """
+    Set up the main GUI window for the calendar printer and run the event loop.
+
+    Returns:
+    None
+    """
+
     root = tk.Tk() # Create main window
     root.title("Calendar Printer")
 
