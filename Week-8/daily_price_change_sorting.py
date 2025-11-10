@@ -48,8 +48,10 @@ plt.figure(figsize=(8, 4))
 
 # Plot scatter 
 #plt.scatter(x_values, times, marker='o', linestyle='-', color='blue')
+
 # Plot line graph 
 plt.plot(x_values, times, linestyle='-', color='blue')
+
 #plt.plot(x_values, n_log_n, label='n log n', color='red')
 plt.title('Daily Price Changes')
 plt.xlabel('Number of Price Changes Sorted')
