@@ -19,7 +19,7 @@ asset_price_data_df['Close/Last'] = asset_price_data_df['Close/Last'].replace('[
 asset_price_data_df['Daily Price Change'] = asset_price_data_df['Close/Last'].diff()
 #print (asset_price_data_df)
 
-# Move the price changes column to an array for plotting
+# Move the price changes column to an array for plotting and remove NaN values
 price_changes = asset_price_data_df['Daily Price Change'].dropna().to_numpy()
 times = []
 
