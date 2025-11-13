@@ -42,6 +42,7 @@ x_values = np.arange(7, len(times)+7)
 
 # Calculate n log n values for comparison
 n_log_n = x_values * np.log(x_values) 
+n_log_n = n_log_n / np.max(n_log_n) * np.max(times)  # Normalize to match the scale of times
 
 # Plot figure
 plt.figure(figsize=(8, 4))
@@ -49,8 +50,8 @@ plt.figure(figsize=(8, 4))
 
 plt.plot(x_values, times, linestyle='-', color='blue') # Plot line graph
 #plt.scatter(x_values, times, marker='o', linestyle='-', color='blue') # Plot scatter  
-#plt.plot(x_values, n_log_n, label='n log n', color='red') # Plot n log n for comparison
-#plt.legend()
+plt.plot(x_values, n_log_n, label='n log n', color='red') # Plot n log n for comparison
+plt.legend()
 
 plt.title('Daily Price Changes to Sort vs Sorting Time')
 plt.xlabel('Number of Price Changes Sorted')
