@@ -113,7 +113,7 @@ def setup_calendar_gui():
     calendar_inner_frame = tk.Frame(scrollable_frame)
     calendar_inner_frame.pack()
 
-    root.mainloop() # Start the GUI infinite event loop
+    root.mainloop() # Start the GUI event loop
 
 if __name__ == "__main__": # Run the GUI setup function if this file is executed directly
     setup_calendar_gui()
