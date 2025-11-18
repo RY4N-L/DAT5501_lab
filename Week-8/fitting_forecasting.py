@@ -15,6 +15,9 @@ pd.set_option('display.max_rows', None)
 sample_population_data_df = population_data_df[(population_data_df['Year'] > 1900) & (population_data_df['Year'] <= population_data_df['Year'].max() - 10)]
 
 def n_polynomial_fit(order, colour, linestyle):
+    global chi_squared_values
+    global chi_squared_per_dof_values
+
     # Fit a polynomial of given order to the sample data
     coefficients = np.polyfit(sample_population_data_df['Year'], sample_population_data_df['Population'], order)
     polynomial = np.poly1d(coefficients)
@@ -24,12 +27,13 @@ def n_polynomial_fit(order, colour, linestyle):
     y_values = polynomial(x_values)
     
     # Plot the original data and the fitted curve
-    plt.plot(x_values, y_values, color=colour, label=f'Polynomial Fit (Order {order})', linestyle=linestyle)
+    plt.plot(x_values, y_values, color=colour, label=f'Polynomial Fit (Order {order})', linestyle=linestyle, markersize=2)
     
     # Calculate chi-squared value for the fit
     residuals = sample_population_data_df['Population'] - polynomial(sample_population_data_df['Year'])
     chi_squared = np.sum((residuals ** 2) / polynomial(sample_population_data_df['Year']))
     chi_squared_values[order] = chi_squared
+
 
     return polynomial
 
@@ -39,6 +43,7 @@ n_polynomial_fit(1, 'red', 'dashed')
 n_polynomial_fit(2, 'green', 'dotted')
 n_polynomial_fit(3, 'orange', 'dashdot')
 n_polynomial_fit(4, 'purple', 'solid')
+
 
 n_polynomial_fit(5, 'brown', 'dashed')
 n_polynomial_fit(6, 'pink', 'dotted')
@@ -60,6 +65,14 @@ plt.xlabel('Polynomial Order')
 plt.ylabel('Chi-Squared Value')
 plt.title('Chi-Squared Values for Different Polynomial Orders')
 plt.show()
+
+# plot a graph of chi-squared values per degree of freedom
+plt.plot(list(chi_squared_values.keys()), [chi_squared_values[order] / (len(sample_population_data_df['Year']) - (order)) for order in chi_squared_values.keys()], marker='o')
+plt.xlabel('Polynomial Order')
+plt.ylabel('Chi-Squared per Degree of Freedom')
+plt.title('Chi-Squared per Degree of Freedom for Different Polynomial Orders')
+plt.show()
+
 
 
 print (sample_population_data_df)
