@@ -45,6 +45,39 @@ Each folder includes Python scripts demonstrating different programming concepts
     - Identifies best model and covariance matrix for parameters  
   - `population_data_owid.csv` – dataset of global population (1900–present)
 
+## 📂 Repository Structure (Tree View)
+
+DAT5501_lab/
+│
+├── Week-1/
+│   ├── test.py
+│   ├── unit_testing_function.py
+│   └── unit_testing_tests.py
+│
+├── Week-2/
+│   └── interest_rate.py
+│
+├── Week-3/
+│   ├── calendar_printer.py
+│   ├── calendar_printer_gui.py
+│   └── Group-Presentation/
+│       ├── meat_co2_analysis.py
+│       ├── meat_co2_data.csv
+│       ├── meat_population_analysis.py
+│       └── meat_population_data.csv
+│
+├── Week-5/
+│   ├── duration_calculator_days.py
+│   ├── duration_calculator_days_gui.py
+│   ├── US_election_histogram.py
+│   └── US-2016-primary.csv
+│
+└── Week-8/
+    ├── daily_price_change_sorting.py
+    ├── asset_price_data.csv
+    ├── fitting_forecasting.py
+    └── population_data_owid.csv
+
 ---
 
 ## ⚙️ Requirements
