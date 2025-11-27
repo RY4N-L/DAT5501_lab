@@ -12,7 +12,7 @@ Each folder includes Python scripts demonstrating different programming concepts
 - Built **GUI applications** with Tkinter and tkcalendar (Week‑3 & Week‑5).  
 - Conducted a **group project** analysing global meat consumption vs CO₂ emissions using Our World in Data (Week‑3).  
 - Implemented **unit testing** to validate calculations (Week‑1).  
-- Analyzed **US election data** with fuzzy matching and histograms (Week‑5).  
+- Analysed **US election data** with fuzzy matching and histograms (Week‑5).  
 - Extended **asset price analysis** to test sorting performance against *n log n* complexity (Week‑8).  
 - Performed **polynomial fitting and forecasting** on global population trends, calculating χ²/dof and BIC to evaluate models (Week‑8).  
 
