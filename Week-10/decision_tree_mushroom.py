@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from ucimlrepo import fetch_ucirepo 
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, KFold, cross_val_score
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import accuracy_score
 
@@ -40,6 +40,13 @@ clf.fit(x_train, y_train)
 preds = clf.predict(x_test)
 print ("test accuracy:", accuracy_score(y_test, preds)) # Print test accuracy
 
+# Define cross-validation
+kf = KFold(n_splits = 9, shuffle = True, random_state = 0)
+
+# Cross-validate
+cv_scores =  cross_val_score(clf, x, y, cv=kf)
+
+print (cv_scores)
 # Plot tree graphically
 plt.figure(figsize=(20,10))
 plot_tree(clf, feature_names=x.columns, class_names=y['poisonous'].values, filled=True)
